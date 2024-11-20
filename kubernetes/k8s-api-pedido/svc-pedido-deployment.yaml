@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: svc-pedido
+  name: svc-pedido
+spec:
+  selector:
+    app: pedidodeployment
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8082
+      nodePort: 31302
+  type: NodePort

@@ -1,0 +1,58 @@
+name: ci + cd
+
+on:
+  push:
+    branches: main
+
+jobs:
+     login:
+       runs-on: ubuntu-latest
+       steps:
+         - uses: actions/checkout@v1
+         -
+           name: Login to Docker Hub
+           uses: docker/login-action@v3
+           with:
+             username: ${{ secrets.DOCKERHUB_USERNAME }}
+             password: ${{ secrets.DOCKERHUB_TOKEN }}
+         -
+           name: Build docker image
+           run: | 
+             docker build  \
+              --build-arg AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} \
+              --build-arg AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }} \
+              --build-arg AWS_SESSION_TOKEN=${{ secrets.AWS_SESSION_TOKEN }} \
+             -t pedido-pedido .
+         -
+           name: Build docker push
+           run: |                    
+             docker image tag pedido-pedido ${{ secrets.DOCKERHUB_USERNAME }}/pedido-techchallenge
+             docker push ${{ secrets.DOCKERHUB_USERNAME }}/pedido-techchallenge
+
+     deploy:
+      needs: login
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Code
+          uses: actions/checkout@v3
+
+        - name: Install kubectl
+          uses: azure/setup-kubectl@v2.0
+          with:
+            version: 'v1.24.0' # default is latest stable
+          id: install
+
+        - name: Configure AWS Credentials
+          uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+            aws-region: us-east-1
+
+        - name: Update kube config
+          run: aws eks update-kubeconfig --name tech
+
+        - name: Deploy to EKS api
+          run: |
+            kubectl apply -f kubernetes/k8s-api-pedido
