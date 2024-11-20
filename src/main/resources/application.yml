@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: pedido
+#aws:
+#  accessKey: ${AWS_ACCESS_KEY}
+#  secretKey: ${AWS_SECRET_KEY}
+#  sessionToken: ${AWS_SESSION_TOKEN}
+#  region: us-east-1
+
+
+aws:
+  accessKey: "ASIAYHW6SSOSDQZI6NBQ"
+  secretKey: "Q2JFuW5aVTyyOgwV8TaTaQ/2D9SdfYI6kPzEtEQI"
+  sessionToken: "IQoJb3JpZ2luX2VjEPj//////////wEaCXVzLXdlc3QtMiJIMEYCIQCGqn3YT3DIZys03qtl6RUMGECBHadNMuZ1sZ+Cgn0L4gIhALS7UDuewMcubSN5mpm5CltQTIrMgvCzrdrhvKfSGzf1KrsCCJH//////////wEQAhoMNTY2MzI4NzI2NDM2Igzi2oU0nXvWZMZqnYYqjwLwuBCePVHFXMVkWVKiy73IU+IsS9H0Ed/PTkkTzBD8GzSJXOKVnqIOZrMWj+48E8z0T+T4PQ7/qS6JXDluwLnnnF4rlrKFjRQvCrQhNx6DsjIkYWy0+2v2IlPm/5dhl8mxRiHOpLE6aqfZYpsH0t/+nmRMULzD5X/ENDGSot+vavLUrudo6mMSacIs0gxaE8o6QfNm3O+pm07ifm2HN7SMGvQJZNOPeKb0T88kkCL6cpsLOdEeSR40RBLJ38rjV7ZrApFnkkf8Bvjb5xDm43yfSRGeCYAVXcHnPNMi390X3fWVC09i2V1464gAQwTY3BIEUSDYSiX5+LOxmgvmlAIFJReVoTcZjaomqGBLi8pPMMqU+LkGOpwBK9Pua3xkc1oWuoL9xu7hW9TZ+s4fR1pSex7riE37CmR+/wjpim61J616n0qf4Y0iBqt3g8m0MMQKwuHeMDljlr1GdGjCNYbeO5GjMndRxAxBa67Hx6/WH7xSTQkIReGln8mumMcCbhRBpr07buBpqHPpajtZh58FRtmXLWlbKyOXqjGhasc9sTO3COo/6ttSHBsNaH/tFozuuV3/"
+  region: us-east-1
+
+server:
+  port: 8082

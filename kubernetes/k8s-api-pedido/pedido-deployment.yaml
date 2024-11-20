@@ -1,0 +1,22 @@
+# exemplo deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pedidodeployment
+  labels:
+    app: pedidodeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pedidodeployment
+  template:
+    metadata:
+      labels:
+        app: pedidodeployment
+    spec:
+      containers:
+        - name: pedido
+          image: carlaccp/pedido-techchallenge
+          ports:
+            - containerPort: 8082
