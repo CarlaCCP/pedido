@@ -16,6 +16,12 @@ jobs:
         with:
           java-version: 17
           distribution: 'temurin'
+
+      - name: Run behavior test
+        run: |
+          chmod +x mvnw
+          ./mvnw test -Dkotest.tags=behavior
+
       - name: Run Coverage
         run: |
           chmod +x mvnw
