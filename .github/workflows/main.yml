@@ -5,7 +5,7 @@ on:
     branches: main
 
 jobs:
-     login:
+     build:
        runs-on: ubuntu-latest
        steps:
          - uses: actions/checkout@v1
@@ -29,7 +29,7 @@ jobs:
              docker image tag pedido-pedido ${{ secrets.DOCKERHUB_USERNAME }}/pedido-techchallenge
              docker push ${{ secrets.DOCKERHUB_USERNAME }}/pedido-techchallenge
 
-     deploy:
+     cd:
       needs: login
       runs-on: ubuntu-latest
       steps:
