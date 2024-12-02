@@ -5,7 +5,7 @@ on:
     types: [ opened, reopened, synchronize ]
 
 jobs:
-  ci:
+  build:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
